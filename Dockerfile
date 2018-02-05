@@ -1,5 +1,6 @@
 FROM elixir:1.5.3
 MAINTAINER Eric Haase <erichaase@gmail.com>
+RUN apt-get update && apt-get install --yes postgresql-client
 ADD . /app
 RUN mix local.hex --force
 WORKDIR /app
