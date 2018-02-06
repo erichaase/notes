@@ -36,7 +36,8 @@ defmodule Notes.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:ex_machina, "~> 2.1"}]
+     {:ex_machina, "~> 2.1"},
+     {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
