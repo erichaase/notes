@@ -3,30 +3,31 @@ web:
   ports:
     - "49235:4000"
   links:
-    - db:dockerdb
+    - db
   volumes:
     - .:/app
   command: >
     /bin/bash -c "
       sleep 2;
-      mix do ecto.migrate, phoenix.server
+      mix do ecto.create, ecto.migrate, phoenix.server
     "
 db:
-  image: kamui/postgresql
+  image: postgres
   environment:
-    - POSTGRESQL_DB=phoenix
-    - POSTGRESQL_USER=postgres
-    - POSTGRESQL_PASS=postgres
-test:
-  image: notes_web
-  environment:
-    - MIX_ENV=test
-  volumes_from:
-    - web
-  links:
-    - db:dockerdb
-  command: >
-    /bin/bash -c "
-      sleep 2;
-      mix test
-    "
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_HOST=db
+
+# test:
+#   image: notes_web
+#   environment:
+#     - MIX_ENV=test
+#   volumes_from:
+#     - web
+#   links:
+#     - db:dockerdb
+#   command: >
+#     /bin/bash -c "
+#       sleep 2;
+#       mix test
+#     "
