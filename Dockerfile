@@ -5,4 +5,4 @@ ADD . /app
 RUN mix local.hex --force
 WORKDIR /app
 EXPOSE 4000
-CMD ["mix", "phoenix.server"]
+CMD ["mix", "do", "ecto.migrate,", "phoenix.server"]

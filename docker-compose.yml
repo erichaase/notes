@@ -6,6 +6,11 @@ web:
   - db:dockerdb
   volumes:
   - .:/app
+  command: >
+    /bin/bash -c "
+      sleep 2;
+      mix do ecto.migrate, phoenix.server
+    "
 db:
   image: kamui/postgresql
   environment:
