@@ -1,11 +1,11 @@
 web:
   build: .
   ports:
-  - "49235:4000"
+    - "49235:4000"
   links:
-  - db:dockerdb
+    - db:dockerdb
   volumes:
-  - .:/app
+    - .:/app
   command: >
     /bin/bash -c "
       sleep 2;
@@ -14,6 +14,19 @@ web:
 db:
   image: kamui/postgresql
   environment:
-  - POSTGRESQL_DB=phoenix
-  - POSTGRESQL_USER=postgres
-  - POSTGRESQL_PASS=postgres
+    - POSTGRESQL_DB=phoenix
+    - POSTGRESQL_USER=postgres
+    - POSTGRESQL_PASS=postgres
+test:
+  image: notes_web
+  environment:
+    - MIX_ENV=test
+  volumes_from:
+    - web
+  links:
+    - db:dockerdb
+  command: >
+    /bin/bash -c "
+      sleep 2;
+      mix test
+    "
