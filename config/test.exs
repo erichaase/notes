@@ -12,9 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :notes, Notes.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: System.get_env("DOCKERDB_ENV_POSTGRESQL_USER"),
-  password: System.get_env("DOCKERDB_ENV_POSTGRESQL_PASS"),
+  username: System.get_env("DB_ENV_POSTGRES_USER"),
+  password: System.get_env("DB_ENV_POSTGRES_PASSWORD"),
+  hostname: System.get_env("DB_ENV_POSTGRES_HOST"),
   database: "notes_test",
-  hostname: System.get_env("DOCKERDB_PORT_5432_TCP_ADDR"),
-  port: System.get_env("DOCKERDB_PORT_5432_TCP_PORT"),
   pool: Ecto.Adapters.SQL.Sandbox

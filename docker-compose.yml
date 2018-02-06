@@ -17,17 +17,14 @@ db:
     - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=postgres
     - POSTGRES_HOST=db
-
-# test:
-#   image: notes_web
-#   environment:
-#     - MIX_ENV=test
-#   volumes_from:
-#     - web
-#   links:
-#     - db:dockerdb
-#   command: >
-#     /bin/bash -c "
-#       sleep 2;
-#       mix test
-#     "
+test:
+  image: notes_web
+  volumes_from:
+    - web
+  links:
+    - db
+  command: >
+    /bin/bash -c "
+      sleep 2;
+      mix test
+    "
