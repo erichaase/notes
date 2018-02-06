@@ -27,6 +27,8 @@ defmodule Notes.ConnCase do
 
       import Notes.Router.Helpers
 
+      import Notes.Factory
+
       # The default endpoint for testing
       @endpoint Notes.Endpoint
     end

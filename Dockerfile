@@ -5,5 +5,7 @@ ADD . /app
 RUN mix local.hex --force
 RUN mix local.rebar --force
 WORKDIR /app
+RUN mix deps.get
+RUN mix compile
 EXPOSE 4000
 CMD ["mix", "do", "ecto.migrate,", "phoenix.server"]

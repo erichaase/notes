@@ -7,5 +7,7 @@ defmodule Notes.Router do
 
   scope "/api", Notes do
     pipe_through :api
+
+    resources "/notes", NoteController, only: [:index]
   end
 end
