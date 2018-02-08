@@ -7,6 +7,10 @@ defmodule Notes.NoteView do
     }
   end
 
+  def render("show.json", %{note: note}) do
+    %{note: note_json(note)}
+  end
+
   def note_json(note) do
     %{
       title: note.title,
